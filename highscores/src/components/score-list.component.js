@@ -146,7 +146,7 @@ export default class ScoreList extends Component {
     let displayScores = this.state.scores.slice();
 
     if (this.isLeaderboard) {
-      // TODO: Move the filter to the server.
+      // TODO: Move the filter to the server eventually.
       displayScores = displayScores.filter(score => score.eventcode === this.eventToShow);
     }
 
