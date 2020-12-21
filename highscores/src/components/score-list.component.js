@@ -17,6 +17,7 @@ const RecentScore = props => (
 
 const LeaderScore = props => (
   <tr>
+    <td>{props.score.rank}</td>
     <td>{props.score.username}</td>
     <td>{props.score.score}</td>
     <td>{props.score.date.toLocaleString()}</td>
@@ -155,9 +156,10 @@ export default class ScoreList extends Component {
     sortedScores.length = Math.min(sortedScores.length, this.totalItems);
     // Update the score array with additional metadata.
     // TODO: Include things like New and Delta in here.
-    sortedScores.forEach(score => {
+    sortedScores.forEach((score, index) => {
       score.eventname = this.getEventNameFromCode(score.eventcode);
       score.username = this.getNameFromCode(score.usercode);
+      score.rank = index + 1;
     });
 
     // TODO: Add a filter by dropdown and/or URL i.e. an actual score table.
@@ -180,6 +182,7 @@ export default class ScoreList extends Component {
         <table className="table">
           <thead className="thead-light">
             <tr>
+              <th>Rank</th>
               <th>User</th>
               <th>Score</th>
               <th>Date</th>
